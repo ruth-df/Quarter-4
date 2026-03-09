@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Rating System</title>
     <style>
-        /* General Reset and Body Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f4f8;
@@ -16,7 +15,6 @@
             color: #333;
         }
 
-        /* Main Container Card */
         .container {
             background: #ffffff;
             padding: 30px;
@@ -33,7 +31,6 @@
             font-size: 1.5rem;
         }
 
-        /* Form Elements */
         .form-group {
             margin-bottom: 15px;
         }
@@ -65,7 +62,6 @@
             background-color: #fff;
         }
 
-        /* Star Rating Logic (Right-to-Left for CSS sibling selectors) */
         .star-rating {
             display: flex;
             flex-direction: row-reverse;
@@ -73,26 +69,24 @@
         }
 
         .star-rating input {
-            display: none; /* Hide standard radio buttons */
+            display: none;
         }
 
         .star-rating label {
             font-size: 30px;
-            color: #e4e5e9; /* Gray star */
+            color: #e4e5e9;
             cursor: pointer;
             margin: 0;
             padding: 0 2px;
             transition: color 0.2s;
         }
 
-        /* Highlight stars on hover and when checked */
         .star-rating input:checked ~ label,
         .star-rating label:hover,
         .star-rating label:hover ~ label {
-            color: #ffc107; /* Golden yellow star */
+            color: #ffc107; 
         }
 
-        /* Submit Button */
         button {
             width: 100%;
             padding: 12px;
@@ -112,7 +106,6 @@
             background-color: #0b5ed7;
         }
 
-        /* Divider */
         hr {
             border: 0;
             height: 1px;
@@ -120,7 +113,6 @@
             margin-bottom: 20px;
         }
 
-        /* Movie List Styling */
         .movie-list-header {
             text-align: center;
             margin-bottom: 15px;
@@ -170,12 +162,12 @@
         <form id="movieForm">
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required placeholder="e.g., The Matrix">
+                <input type="text" id="title" name="title" required placeholder="e.g., 100 Tula Para Kay Stella">
             </div>
             
             <div class="form-group">
                 <label for="year">Year:</label>
-                <input type="number" id="year" name="year" required placeholder="e.g., 1999" min="1900" max="2100">
+                <input type="number" id="year" name="year" required placeholder="e.g., 2017" min="1900" max="2100">
             </div>
             
             <div class="form-group">
@@ -223,18 +215,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // DOM Elements
             const movieForm = document.getElementById('movieForm');
             const movieListContainer = document.getElementById('movieList');
 
-            // 1. Initialize data state
-            // Retrieve data from localStorage and parse it. If null, start with empty array.
             let moviesArray = JSON.parse(localStorage.getItem('movies')) || [];
 
-            // Helper function to generate visual stars based on numeric rating
             const generateStarHTML = (ratingValue) => {
-                const filledStar = '&#9733;'; // Unicode solid star
-                const emptyStar = '&#9734;'; // Unicode outline star
+                const filledStar = '&#9733;'; 
+                const emptyStar = '&#9734;'; 
                 const rating = parseInt(ratingValue, 10);
                 
                 let html = '';
@@ -248,18 +236,14 @@
                 return html;
             };
 
-            // 2. Read Operation: Render the list to the UI
             const renderMovieList = () => {
-                // Clear the current display
                 movieListContainer.innerHTML = '';
 
-                // Handle empty state
                 if (moviesArray.length === 0) {
                     movieListContainer.innerHTML = '<p class="empty-state">No movies added yet.</p>';
                     return;
                 }
 
-                // Loop through array and build HTML for each item
                 moviesArray.forEach(movie => {
                     const itemDiv = document.createElement('div');
                     itemDiv.classList.add('movie-item');
@@ -277,21 +261,15 @@
                 });
             };
 
-            // Render list on initial page load
             renderMovieList();
 
-            // 3. Create Operation: Handle form submission
             movieForm.addEventListener('submit', (event) => {
-                // Prevent page refresh on submit
                 event.preventDefault();
-
-                // Gather form data
                 const titleInput = document.getElementById('title').value.trim();
                 const yearInput = document.getElementById('year').value.trim();
                 const genreInput = document.getElementById('genre').value;
                 const ratingInput = document.querySelector('input[name="rating"]:checked').value;
 
-                // Create movie object definition (JSON ready)
                 const newMovieObject = {
                     title: titleInput,
                     year: yearInput,
@@ -299,16 +277,12 @@
                     rating: ratingInput
                 };
 
-                // Add to array state
                 moviesArray.push(newMovieObject);
 
-                // Save updated array back to localStorage as a string
                 localStorage.setItem('movies', JSON.stringify(moviesArray));
 
-                // Update the visual list
                 renderMovieList();
 
-                // Clear the form fields for the next entry
                 movieForm.reset();
             });
         });

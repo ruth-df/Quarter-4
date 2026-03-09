@@ -1,0 +1,29 @@
+* {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+body {
+    background-color: #DFD8C8;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+h1 {
+    background-color: #CABFAB;
+    color: #41444B;
+    text-align: center;
+    padding: 10px;
+}
+a:link {
+    color: #424874;
+    text-decoration: italic, underline;
+}
+
+a:visited {
+    color: #911F27;
+}
+
+a:hover {
+    color: #FACE7F;
+    text-decoration: bold, underline;
+}
