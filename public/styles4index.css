@@ -3,24 +3,24 @@
     box-sizing: border-box;
 }
 body {
-    background-color: #DFD8C8;
+    background-color: #131414;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 h1 {
-    background-color: #CABFAB;
+    background-color: #ffffff;
     color: #41444B;
     text-align: center;
     padding: 10px;
 }
 a:link {
-    color: #424874;
+    color: #d5daff;
     text-decoration: italic, underline;
 }
 
 a:visited {
-    color: #911F27;
+    color: #ff7d86;
 }
 
 a:hover {
